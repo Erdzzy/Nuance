@@ -5,28 +5,30 @@ Created on Wed Mar 19 21:08:21 2025
 @author: Ian
 """
 
-from lambeq import BobcatParser
+from lambeq import BobcatParser # THIS PARSER DOESN'T WORK
+from lambeq import SpacyTokeniser
 import os
 import warnings
 import numpy as np
 from tokenizers import Tokenizer
-from tokenizers import CharBPETokenizer
-
 warnings.filterwarnings('ignore') # I believe this is to set up for the thing under
 os.environ['TOKENIZERS_PARALLELISM'] = 'true' # I think this allows for parallelization if we want
-#filename = (["C:\Users\ian13\Documents\CIS_CLASSES\CIS_325\Project Report.docx"]
-# Tokenize
-tokenizer = CharBPETokenizer()
-tokenizer.train("E:/Nuance/Project Report.txt")
-encoded = tokenizer.encode("How are y'all doing?")
-tokenizer.save("E:/Nuance/Output.txt")
+file = "E:/Nuance/Project Report.txt"
+# Tokenize words
+tokenizer = SpacyTokeniser()
+source = open("E:/Nuance/Project Report.txt",'r')
+data = source.read()
+print(data)
 
-print(encoded)
+# -------------------------------------------------------------------
+# Tokenize sentences
+tokens =  tokenizer.split_sentences(data)
+tokens
 
+parser = BobcatParser(verbose='suppress')
+diagram = parser.sentence2diagram(tokens, tokenised= True)
+diagram.draw()
 
-BATCH_SIZE = 10
-EPOCHS = 100
-SEED = 2
 
 
 
@@ -42,7 +44,6 @@ def read_data(filename):
     return labels, sentences
 
 
+read_data("E:/Nuance/Output.txt")
 
-parser = BobcatParser()
-diagram = parser.sentence2diagram('Get bent nerd')
-diagram.draw()
+

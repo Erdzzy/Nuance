@@ -5,8 +5,9 @@ Created on Wed Mar 19 21:08:21 2025
 @author: Ian
 """
 
-from lambeq import BobcatParser # THIS PARSER DOESN'T WORK
+from lambeq import BobcatParser # 
 from lambeq import SpacyTokeniser
+from lambeq import Reader, cups_reader, spiders_reader, stairs_reader
 import os
 import warnings
 import numpy as np
@@ -24,7 +25,7 @@ print(data)
 # Tokenize sentences
 tokens =  tokenizer.split_sentences(data)
 tokens
-
+# I will need to get this working to be able to get to the next step
 parser = BobcatParser(verbose='suppress')
 diagram = parser.sentence2diagram(tokens, tokenised= True)
 diagram.draw()
@@ -44,6 +45,6 @@ def read_data(filename):
     return labels, sentences
 
 
-read_data("E:/Nuance/Output.txt")
+read_data())
 
 

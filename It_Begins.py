@@ -30,8 +30,9 @@ parser = BobcatParser(verbose='suppress')
 diagram = parser.sentence2diagram(tokens, tokenised= True)
 diagram.draw()
 
-
-
+# Get the bobcat parser to work
+# Start working on the using multi-class classification system and the loss function that goes with it.
+# Pick an algo to train and maybe look into transformers
 
 
 # Let's read baby
@@ -45,6 +46,6 @@ def read_data(filename):
     return labels, sentences
 
 
-read_data())
+read_data()
 
 

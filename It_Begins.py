@@ -4,7 +4,7 @@ Created on Wed Mar 19 21:08:21 2025
 
 @author: Ian
 """
-
+import torch
 from lambeq import BobcatParser # 
 from lambeq import SpacyTokeniser
 from lambeq import Reader, cups_reader, spiders_reader, stairs_reader
@@ -21,6 +21,12 @@ source = open("E:/Nuance/Project Report.txt",'r')
 data = source.read()
 print(data)
 
+
+train_labels, train_data = open("E:/Nuance/Project Report.txt",'r')
+test_labels, test_data = open("E:/Nuance/Case_Analysis.txt",'r') # Not working 
+
+
+
 # -------------------------------------------------------------------
 # Tokenize sentences
 tokens =  tokenizer.split_sentences(data)
@@ -35,6 +41,36 @@ diagram.draw()
 # Pick an algo to train and maybe look into transformers
 
 
+
+# Classical Read
+def read(filename):
+    labels, sentences = [], []
+    with open(filename) as f:
+        for line in f:
+            t = int(line[0])
+            labels.append([t,1-t])
+            sentences.append(line[1:].strip())
+    return labels, sentences
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Let's read baby
 def read_data(filename):
     labels, sentences = [], []
@@ -46,6 +82,6 @@ def read_data(filename):
     return labels, sentences
 
 
-read_data()
+read_data(data)
 
 
